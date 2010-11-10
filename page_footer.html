@@ -1,0 +1,20 @@
+;
+        function init() {
+            document.getElementById("container").innerHTML = 
+                Object.keys(data).map(function (key) {
+                    var sorted = Object.keys(data[key]).sort(function (a,b) {
+                        return data[key][b] - data[key][a];
+                    });
+                    return "<h1>" + key + "</h1>\n<table>" + sorted.map(function (key2) {
+                        return "<tr><td>" + key2 + "</td><td>" + data[key][key2] + "</td></tr>";
+                    }).join('') + "</table>";
+                }).join('') + "</table>";
+        }
+
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>

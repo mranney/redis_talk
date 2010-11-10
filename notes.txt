@@ -1,0 +1,90 @@
+Asynchronous Fun With Node.js and Redis
+
+Node has only non-blocking I/O, which is good.
+Purely non-blocking filesystem and database work can get kind of tricky.
+After you work with it a little bit, you'll learn some patterns that make it easy.
+And it's really fun, because these are awesome technologies.  
+
+
+JavaScript is great.
+
+
+Node is great.
+
+
+Redis is great.
+
+I'm going to show you some examples of what you can do with node and Redis.
+
+
+node_redis
+
+I wrote a Redis library for node, called "node_redis".
+If you have node and npm installed, you can install it with: npm install redis
+
+
+Redis
+
+Data structure server, whatever that means.
+Database, more or less.
+Key-value store, sure.
+noSQL?  Why not.
+A better memcached?  No controversy there.
+
+Mostly in-memory database.
+Rather fast.
+
+
+Redis Interface
+
+TCP connection
+Custom protocol that seems easy to parse.
+CLI available.  <<show quick example>>
+Real work is done through client libraries.
+Client libraries like node_redis.
+
+
+Simple Example
+
+Get a value and increment a counter.
+We get the expected result, but things are happening very asynchronously.
+Why doesn't it quit?
+<<example1.js>>
+
+
+Web Server
+
+You probably don't want to use node's low level HTTP interface.
+But you should know how it works.
+Everybody writes a web framework, and you can too.
+<<example2.js>>
+It generates a web page from data it pulls from Redis.
+In many ways, Redis is a lot like node.  Single thread, has data structures.
+Just data ops, hardly any logic.
+Can access huge amounts of memory, no GC.
+
+
+Loading Data
+
+Here's how I put the data into Redis
+<<load_data.js>>
+Note that I cheated by assuming the files would read in order.
+
+
+Publish / Subscribe
+
+Producers and consumers can use Redis protocol
+Seems like an odd feature to put in a database
+But its really useful
+<<example3.js>>
+
+
+Message Queue
+
+Blocking pop operation lets multiple consumers supply data to multiple consumers.
+
+
+If we have enough time, then do:
+
+node_pcap
+
