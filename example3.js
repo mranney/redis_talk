@@ -1,3 +1,4 @@
+// 192.168.16.13
 var http = require("http"),
     client = require("redis").createClient();
 
@@ -25,6 +26,7 @@ http.createServer(function (request, response) {
         response.write(JSON.stringify(data));
         response.write(footer);
         response.end();
+        
         client.publish("access log:9000", request.connection.remoteAddress + " " +
             request.url + " " + (request.headers["user-agent"] || ""));
     });

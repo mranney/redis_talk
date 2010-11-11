@@ -1,3 +1,4 @@
+// 192.168.16.13
 var http = require("http"),
     client = require("redis").createClient();
 
@@ -12,7 +13,6 @@ http.createServer(function (request, response) {
         response.write(reply[0]); // header
         footer = reply[1].toString();
     });
-    
     client.hincrby("ip", request.connection.remoteAddress, 1);
     client.hgetall("ip", function (err, reply) {
         var data = {
@@ -22,7 +22,7 @@ http.createServer(function (request, response) {
             data.ip[ip] = reply[ip].toString();
         });
         
-        // This is the last reply, so all of the previous replies must have completed already
+        // This is the last reply, so all of the previous replies must have completed
         response.write(JSON.stringify(data));
         response.write(footer);
         response.end();

@@ -1,9 +1,14 @@
 Asynchronous Fun With Node.js and Redis
 
+I have a server and networking background, so I've only come to JavaScript recently.
+If you already know JavaScript from doing front end development, you probably already know the hard parts about
+   working with node.
 Node has only non-blocking I/O, which is good.
-Purely non-blocking filesystem and database work can get kind of tricky.
-After you work with it a little bit, you'll learn some patterns that make it easy.
-And it's really fun, because these are awesome technologies.  
+JS in browser is only non-blocking as well.
+Node opens up a whole new world of things you can talk non-blockingly to, databases, file systems, child processes, etc.
+I'm going to show you some examples of how you can use JavaScript, node, and Redis to do interesting things.
+These are just simple examples, but I hope they'll inspire you to go and make things of your own.
+And it's really fun, because these are awesome technologies.
 
 
 JavaScript is great.
@@ -14,22 +19,14 @@ Node is great.
 
 Redis is great.
 
-I'm going to show you some examples of what you can do with node and Redis.
-
-
-node_redis
-
-I wrote a Redis library for node, called "node_redis".
-If you have node and npm installed, you can install it with: npm install redis
-
 
 Redis
 
 Data structure server, whatever that means.
-Database, more or less.
-Key-value store, sure.
+Database?  more or less.
+Key-value store?  sure.
 noSQL?  Why not.
-A better memcached?  No controversy there.
+A better memcached?  Is Linux better than OSX?
 
 Mostly in-memory database.
 Rather fast.
@@ -42,6 +39,12 @@ Custom protocol that seems easy to parse.
 CLI available.  <<show quick example>>
 Real work is done through client libraries.
 Client libraries like node_redis.
+
+
+node_redis
+
+I wrote a Redis library for node, called "node_redis".
+If you have node and npm installed, you can install it with: npm install redis
 
 
 Simple Example
@@ -59,7 +62,7 @@ But you should know how it works.
 Everybody writes a web framework, and you can too.
 <<example2.js>>
 It generates a web page from data it pulls from Redis.
-In many ways, Redis is a lot like node.  Single thread, has data structures.
+In many ways, Redis is a lot like node.  Single thread, has data structures, high concurrent load.
 Just data ops, hardly any logic.
 Can access huge amounts of memory, no GC.
 
@@ -79,9 +82,18 @@ But its really useful
 <<example3.js>>
 
 
+Realtime Analytics
+
+A lot of people use Redis for realtime stats.
+<<example4.js>>
+<<log_viewer2.js>>
+To make things more interesting and to show off node, start 1000 web servers.
+
+
 Message Queue
 
 Blocking pop operation lets multiple consumers supply data to multiple consumers.
+<<queue_server.js>>
 
 
 If we have enough time, then do:
